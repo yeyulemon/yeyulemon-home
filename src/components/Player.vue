@@ -96,46 +96,46 @@ const props = defineProps({
 
 // 初始化播放器
 onMounted(() => {
-  nextTick(() => {
-    try {
-      getPlayerList(props.songServer, props.songType, props.songId).then((res) => {
-        console.log(res);
-        // 生成歌单信息
-        playIndex.value = Math.floor(Math.random() * res.length);
-        playListCount.value = res.length;
-        // 更改播放器加载状态
-        store.musicIsOk = true;
-        // 生成歌单
-        res.forEach((v) => {
-          playList.value.push({
-            title: v.name || v.title,
-            artist: v.artist || v.author,
-            src: v.url || v.src,
-            pic: v.pic,
-            lrc: v.lrc,
-          });
-        });
-        console.log(
-          "音乐加载完成",
-          playList.value,
-          playIndex.value,
-          playListCount.value,
-          props.volume,
-        );
-      });
-    } catch (err) {
-      console.error(err);
-      store.musicIsOk = false;
-      ElMessage({
-        message: "播放器加载失败",
-        grouping: true,
-        icon: h(PlayWrong, {
-          theme: "filled",
-          fill: "#efefef",
-        }),
-      });
-    }
-  });
+  // nextTick(() => {
+  //   try {
+  //     getPlayerList(props.songServer, props.songType, props.songId).then((res) => {
+  //       console.log(res);
+  //       // 生成歌单信息
+  //       playIndex.value = Math.floor(Math.random() * res.length);
+  //       playListCount.value = res.length;
+  //       // 更改播放器加载状态
+  //       store.musicIsOk = true;
+  //       // 生成歌单
+  //       res.forEach((v) => {
+  //         playList.value.push({
+  //           title: v.name || v.title,
+  //           artist: v.artist || v.author,
+  //           src: v.url || v.src,
+  //           pic: v.pic,
+  //           lrc: v.lrc,
+  //         });
+  //       });
+  //       console.log(
+  //         "音乐加载完成",
+  //         playList.value,
+  //         playIndex.value,
+  //         playListCount.value,
+  //         props.volume,
+  //       );
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //     store.musicIsOk = false;
+  //     ElMessage({
+  //       message: "播放器加载失败",
+  //       grouping: true,
+  //       icon: h(PlayWrong, {
+  //         theme: "filled",
+  //         fill: "#efefef",
+  //       }),
+  //     });
+  //   }
+  // });
 });
 
 // 播放
